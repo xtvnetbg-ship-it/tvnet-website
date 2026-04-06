@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#003b8e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ТВНЕТ">
+<meta name="description" content="Лицензиран интернет и ТВ оператор в София. Оптична мрежа, IPTV 200+ канала, 24/7 поддръжка.">
+<title>ТВ-НЕТ — Интернет и Телевизия</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #003b8e;
+  --navy-d: #002a6a;
+  --navy-l: #0a4fa8;
+  --orange: #f5820d;
+  --orange-l: #ff9a2e;
+  --white: #ffffff;
+  --off: #f7f8fc;
+  --g100: #eef0f6;
+  --g300: #c8cdd8;
+  --g500: #7a8099;
+  --g700: #3d4361;
+  --text: #1a1f36;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+h1,h2,h3,h4,.syne{font-family:'Syne',system-ui,sans-serif}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:60px;
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--g100);
+  box-shadow:0 1px 16px rgba(0,59,142,0.07);
+}
+.logo{display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--navy);letter-spacing:-0.4px;text-decoration:none}
+.logo-box{width:32px;height:32px;background:var(--navy);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo span{color:var(--orange)}
+.nav-r{display:flex;gap:8px}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border-radius:8px;font-family:'Syne',sans-serif;font-size:0.84rem;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;text-decoration:none;letter-spacing:0.15px;line-height:1}
+.btn-p{background:var(--orange);color:#fff}
+.btn-p:hover,.btn-p:active{background:var(--orange-l);transform:translateY(-1px)}
+.btn-o{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+.btn-o:hover,.btn-o:active{background:var(--navy);color:#fff}
+.btn-w{background:#fff;color:var(--navy)}
+.btn-w:hover{background:var(--off)}
+.btn-ghost{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);border:1.5px solid rgba(255,255,255,0.2)}
+.btn-ghost:hover{background:rgba(255,255,255,0.15);color:#fff}
+.btn-lg{padding:14px 28px;font-size:0.95rem;border-radius:10px}
+.btn-sm{padding:8px 14px;font-size:0.8rem}
+
+/* ── HERO ── */
+.hero{
+  background:var(--navy);
+  position:relative;overflow:hidden;
+  padding:56px 20px 64px;
+}
+.hero-bg{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 60% at 90% 40%,rgba(245,130,13,0.13) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 70% at 10% 90%,rgba(10,79,168,0.35) 0%,transparent 55%)}
+.hero-grid{position:absolute;inset:0;opacity:0.033;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);
+  background-size:40px 40px}
+.hero-inner{position:relative;z-index:2;max-width:480px;margin:0 auto}
+
+.badge{display:inline-flex;align-items:center;gap:7px;background:rgba(245,130,13,0.13);border:1px solid rgba(245,130,13,0.28);color:#ffab4e;padding:5px 13px;border-radius:100px;font-family:'Syne',sans-serif;font-size:0.73rem;font-weight:700;margin-bottom:18px;letter-spacing:0.4px}
+.pulse{width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.5)}}
+
+.hero h1{font-size:clamp(1.9rem,7vw,2.8rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.8px;margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero-sub{font-size:0.97rem;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:28px}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+
+/* Speed ring — mobile optimized */
+.ring-wrap{display:flex;justify-content:center;margin:32px 0 8px}
+.ring{width:200px;height:200px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center}
+.ring-track{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,0.05)}
+.ring-spin{position:absolute;inset:-2px;border-radius:50%;background:conic-gradient(var(--orange) 0deg,#ff9a2e 110deg,transparent 110deg);animation:spin 7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ring-inner{width:158px;height:158px;background:rgba(0,42,106,0.88);border:1px solid rgba(255,255,255,0.1);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1}
+.ring-num{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:#fff;line-height:1}
+.ring-unit{color:var(--orange);font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700}
+.ring-label{color:rgba(255,255,255,0.45);font-size:0.7rem;margin-top:3px}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:rgba(255,255,255,0.055);border:1px solid rgba(255,255,255,0.09);border-radius:11px;padding:14px 16px}
+.stat-n{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:#fff;line-height:1}
+.stat-n span{color:var(--orange)}
+.stat-l{font-size:0.73rem;color:rgba(255,255,255,0.42);margin-top:2px}
+
+/* ── SECTIONS ── */
+.sec{padding:60px 20px}
+.sec-gray{background:var(--off)}
+.sec-navy{background:var(--navy)}
+.sec-inner{max-width:480px;margin:0 auto}
+.tag{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;color:var(--orange);letter-spacing:1.8px;text-transform:uppercase;margin-bottom:8px}
+.sec-title{font-size:clamp(1.5rem,5.5vw,2rem);font-weight:800;color:var(--navy);line-height:1.15;letter-spacing:-0.3px;margin-bottom:12px}
+.sec-title-w{color:#fff}
+.sec-sub{font-size:0.93rem;color:var(--g500);line-height:1.65;margin-bottom:36px}
+.sec-sub-w{color:rgba(255,255,255,0.58)}
+
+/* ── PLANS ── */
+.plans{display:flex;flex-direction:column;gap:18px}
+.plan{background:#fff;border:1.5px solid var(--g100);border-radius:16px;padding:28px 24px;position:relative;transition:all 0.25s}
+.plan:active{transform:scale(0.99)}
+.plan.featured{background:var(--navy);border-color:var(--navy)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:100px;white-space:nowrap}
+.plan-name{font-family:'Syne',sans-serif;font-size:0.74rem;font-weight:700;color:var(--g500);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:5px}
+.plan.featured .plan-name{color:rgba(255,255,255,0.42)}
+.plan-speed{font-family:'Syne',sans-serif;font-size:2.6rem;font-weight:800;color:var(--navy);line-height:1}
+.plan-speed span{font-size:0.95rem;color:var(--g500);font-weight:400}
+.plan.featured .plan-speed{color:#fff}
+.plan.featured .plan-speed span{color:rgba(255,255,255,0.38)}
+.plan-div{height:1px;background:var(--g100);margin:18px 0}
+.plan.featured .plan-div{background:rgba(255,255,255,0.1)}
+.plan-price-n{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--navy)}
+.plan.featured .plan-price-n{color:var(--orange)}
+.plan-price-p{font-size:0.82rem;color:var(--g500);margin-bottom:18px}
+.plan.featured .plan-price-p{color:rgba(255,255,255,0.38)}
+.plan-feats{list-style:none;margin-bottom:22px}
+.plan-feats li{display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--g700);padding:6px 0;border-bottom:1px solid var(--g100)}
+.plan.featured .plan-feats li{color:rgba(255,255,255,0.78);border-color:rgba(255,255,255,0.07)}
+.plan-feats li:last-child{border:none}
+.chk{width:16px;height:16px;flex-shrink:0;background:rgba(245,130,13,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.plan.featured .chk{background:rgba(245,130,13,0.2)}
+.plan-cta{width:100%;justify-content:center}
+.plan:not(.featured) .btn-p{background:var(--navy)}
+.plan:not(.featured) .btn-p:hover{background:var(--navy-l)}
+
+/* ── SERVICES ── */
+.svcs{display:flex;flex-direction:column;gap:14px}
+.svc{padding:22px 20px;border:1.5px solid var(--g100);border-radius:14px;display:flex;gap:16px;align-items:flex-start;transition:all 0.2s}
+.svc:active{background:var(--off)}
+.svc-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--navy),var(--navy-l));border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.svc-body h3{font-size:0.97rem;font-weight:700;color:var(--navy);margin-bottom:5px}
+.svc-body p{font-size:0.83rem;color:var(--g500);line-height:1.55}
+.svc-arrow{display:inline-flex;align-items:center;gap:4px;color:var(--orange);font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;margin-top:8px}
+
+/* ── COVERAGE BARS ── */
+.cov-bars{background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:18px;margin-bottom:28px}
+.bar-label{display:flex;justify-content:space-between;font-family:'Syne',sans-serif;font-size:0.79rem;font-weight:600;color:rgba(255,255,255,0.62);margin-bottom:7px}
+.bar-track{height:7px;background:rgba(255,255,255,0.08);border-radius:100px;overflow:hidden}
+.bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--orange),var(--orange-l));width:0;transition:width 1.4s cubic-bezier(0.4,0,0.2,1)}
+
+.cov-list{list-style:none;margin:20px 0 28px}
+.cov-list li{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.78);font-size:0.88rem}
+.cov-list li:last-child{border:none}
+.dot{width:7px;height:7px;background:var(--orange);border-radius:50%;flex-shrink:0}
+
+/* ── CHAT ── */
+.chat{background:#fff;border-radius:18px;box-shadow:0 16px 50px rgba(0,59,142,0.13);overflow:hidden;margin-bottom:28px}
+.chat-hd{background:var(--navy);padding:13px 16px;display:flex;align-items:center;gap:11px}
+.chat-av{width:32px;height:32px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;color:#fff;font-size:0.74rem;flex-shrink:0}
+.chat-name{color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem}
+.chat-status{color:rgba(255,255,255,0.42);font-size:0.7rem}
+.chat-body{padding:14px;display:flex;flex-direction:column;gap:9px;background:#f7f8fc;min-height:180px;max-height:280px;overflow-y:auto}
+.msg{max-width:84%;padding:9px 13px;border-radius:13px;font-size:0.83rem;line-height:1.5}
+.msg.bot{background:#fff;color:var(--text);border-bottom-left-radius:3px;align-self:flex-start;box-shadow:0 1px 6px rgba(0,0,0,0.06)}
+.msg.user{background:var(--navy);color:#fff;border-bottom-right-radius:3px;align-self:flex-end}
+.chat-inp{padding:10px 12px;border-top:1px solid var(--g100);display:flex;gap:8px;background:#fff}
+.chat-input{flex:1;padding:9px 12px;border:1.5px solid var(--g100);border-radius:8px;font-size:0.83rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--text)}
+.chat-input:focus{border-color:var(--navy)}
+.chat-send{width:34px;height:34px;background:var(--orange);border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-send:active{background:var(--orange-l)}
+
+/* ── WHY ── */
+.why{display:flex;flex-direction:column;gap:2px;background:var(--g100);border-radius:14px;overflow:hidden}
+.why-item{background:#fff;padding:26px 22px}
+.why-n{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--g100);line-height:1;margin-bottom:10px}
+.why-item h3{font-size:0.97rem;color:var(--navy);margin-bottom:6px}
+.why-item p{font-size:0.83rem;color:var(--g500);line-height:1.6}
+
+/* ── CTA BANNER ── */
+.cta-ban{background:var(--orange);padding:56px 20px;text-align:center;position:relative;overflow:hidden}
+.cta-ban::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 100% at 50% 50%,rgba(255,255,255,0.1) 0%,transparent 70%);pointer-events:none}
+.cta-ban h2{font-size:clamp(1.5rem,6vw,2.2rem);color:#fff;font-weight:800;margin-bottom:8px;position:relative}
+.cta-ban p{color:rgba(255,255,255,0.78);font-size:0.95rem;margin-bottom:28px;position:relative}
+
+/* ── FOOTER ── */
+footer{background:var(--navy-d);padding:48px 20px 32px}
+.footer-inner{max-width:480px;margin:0 auto}
+.footer-brand p{font-size:0.82rem;color:rgba(255,255,255,0.35);line-height:1.6;margin-top:12px;margin-bottom:32px}
+.footer-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:32px}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.32);letter-spacing:1.4px;text-transform:uppercase;margin-bottom:14px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:8px}
+.footer-col ul li a{font-size:0.85rem;color:rgba(255,255,255,0.58);text-decoration:none}
+.footer-bot{border-top:1px solid rgba(255,255,255,0.07);padding-top:20px;text-align:center}
+.footer-bot p{font-size:0.76rem;color:rgba(255,255,255,0.25);margin-bottom:6px}
+.footer-bot a{color:var(--orange);text-decoration:none}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp 0.5s ease both}
+.d1{animation-delay:0.08s}.d2{animation-delay:0.16s}.d3{animation-delay:0.24s}.d4{animation-delay:0.32s}
+
+/* ── INSTALL BANNER ── */
+#install-banner{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:var(--navy);border-top:2px solid var(--orange);
+  padding:14px 20px;display:flex;align-items:center;gap:12px;
+  box-shadow:0 -4px 20px rgba(0,0,0,0.2)
+}
+#install-banner.hidden{display:none!important}
+.install-txt{flex:1;font-size:0.82rem;color:#fff;line-height:1.4}
+.install-txt strong{font-family:'Syne',sans-serif;color:var(--orange)}
+</style>
+</head>
+<body>
+
+<!-- INSTALL BANNER -->
+<div id="install-banner" class="hidden">
+  <div class="install-txt"><strong>Инсталирай ТВНЕТ</strong><br>Добави към началния екран</div>
+  <button class="btn btn-sm btn-p" id="install-btn">Инсталирай</button>
+  <button class="btn btn-sm btn-ghost" id="dismiss-btn">✕</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f5820d" stroke-width="2.2"><path d="M2 12l10-10 10 10M4 10v10h6v-6h4v6h6V10"/></svg>
+    </div>
+    ТВ<span>НЕТ</span>
+  </a>
+  <div class="nav-r">
+    <button class="btn btn-o btn-sm">Вход</button>
+    <button class="btn btn-p btn-sm">Поръчай</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="badge fu"><span class="pulse"></span>Лицензиран оператор · София</div>
+    <h1 class="fu d1">Бърз интернет.<br><em>Без компромиси.</em></h1>
+    <p class="hero-sub fu d2">Оптична мрежа в София с гарантирана скорост и 24/7 поддръжка. IPTV с над 200 канала включено.</p>
+    <div class="hero-ctas fu d3">
+      <button class="btn btn-p btn-lg" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">Виж тарифите →</button>
+      <button class="btn btn-ghost btn-lg" onclick="document.getElementById('coverage').scrollIntoView({behavior:'smooth'})">Покритие</button>
+    </div>
+    <div class="ring-wrap fu d2">
+      <div class="ring">
+        <div class="ring-track"></div>
+        <div class="ring-spin"></div>
+        <div class="ring-inner">
+          <div class="ring-num">1</div>
+          <div class="ring-unit">Gbps</div>
+          <div class="ring-label">Макс. скорост</div>
+        </div>
+      </div>
+    </div>
+    <div class="stats fu d4">
+      <div class="stat"><div class="stat-n">10<span>K+</span></div><div class="stat-l">Активни абонати</div></div>
+      <div class="stat"><div class="stat-n">99<span>.9%</span></div><div class="stat-l">Uptime гаранция</div></div>
+      <div class="stat"><div class="stat-n">24<span>/7</span></div><div class="stat-l">Техн. поддръжка</div></div>
+      <div class="stat"><div class="stat-n">15<span>г.</span></div><div class="stat-l">На пазара</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="sec sec-gray" id="plans">
+  <div class="sec-inner">
+    <div class="tag">Тарифни планове</div>
+    <h2 class="sec-title">Изберете своя план</h2>
+    <p class="sec-sub">Без скрити такси. Без договор за обвързване.</p>
+    <div class="plans">
+
+      <div class="plan">
+        <div class="plan-name">Старт</div>
+        <div class="plan-speed">100 <span>Mbps</span></div>
+        <div class="plan-div"></div>
+        <div class="plan-price-n">18 лв.</div>
+        <div class="plan-price-p">/ месец с ДДС</div>
+        <ul class="plan-feats">
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>100 Mbps симетрично</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>Статичен IP по заявка</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>Безплатна инсталация</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>Телефонна поддръжка</li>
+        </ul>
+        <button class="btn btn-p plan-cta">Поръчай</button>
+      </div>
+
+      <div class="plan featured">
+        <div class="plan-badge">⭐ Най-популярен</div>
+        <div class="plan-name">Оптима</div>
+        <div class="plan-speed">500 <span>Mbps</span></div>
+        <div class="plan-div"></div>
+        <div class="plan-price-n">28 лв.</div>
+        <div class="plan-price-p">/ месец с ДДС</div>
+        <ul class="plan-feats">
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>500 Mbps симетрично</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>Статичен IP включен</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>IPTV 200+ канала</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>Приоритетна поддръжка</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>Wi-Fi рутер включен</li>
+        </ul>
+        <button class="btn btn-p plan-cta">Поръчай</button>
+      </div>
+
+      <div class="plan">
+        <div class="plan-name">Про</div>
+        <div class="plan-speed">1 <span>Gbps</span></div>
+        <div class="plan-div"></div>
+        <div class="plan-price-n">45 лв.</div>
+        <div class="plan-price-p">/ месец с ДДС</div>
+        <ul class="plan-feats">
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>1 Gbps симетрично</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>5 статични IP адреса</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>IPTV 200+ канала</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>24/7 VIP поддръжка</li>
+          <li><span class="chk"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="#f5820d" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></span>SLA гаранция</li>
+        </ul>
+        <button class="btn btn-p plan-cta">Поръчай</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="sec-inner">
+    <div class="tag">Нашите услуги</div>
+    <h2 class="sec-title">Всичко на едно място</h2>
+    <div class="svcs">
+      <div class="svc">
+        <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div class="svc-body"><h3>Оптичен интернет</h3><p>GPON и LAN инфраструктура с гарантирана симетрична скорост до 1 Gbps.</p><div class="svc-arrow">Научи повече →</div></div>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="svc-body"><h3>IPTV услуга</h3><p>200+ канала в HD и 4K. DVR запис, catch-up TV и VOD библиотека.</p><div class="svc-arrow">Научи повече →</div></div>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+        <div class="svc-body"><h3>Бизнес решения</h3><p>Корпоративен интернет, VPN, посветени линии и SLA за бизнес клиенти.</p><div class="svc-arrow">Научи повече →</div></div>
+      </div>
+      <div class="svc">
+        <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M18.36 6.64a9 9 0 010 12.72M5.64 5.64a9 9 0 000 12.72M12 12v.01M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg></div>
+        <div class="svc-body"><h3>OTT стрийминг</h3><p>Гледайте любимото съдържание навсякъде — телефон, таблет, смарт ТВ.</p><div class="svc-arrow">Научи повече →</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section class="sec sec-navy" id="coverage">
+  <div class="sec-inner">
+    <div class="tag">Покритие</div>
+    <h2 class="sec-title sec-title-w">Покриваме цяла София</h2>
+    <p class="sec-sub sec-sub-w">Постоянно разширяваме мрежата. Провери дали твоят адрес е в зоната ни.</p>
+    <div class="cov-bars" id="cov-bars">
+      <div>
+        <div class="bar-label"><span>GPON оптика</span><span>87%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="87"></div></div>
+      </div>
+      <div>
+        <div class="bar-label"><span>LAN мрежа</span><span>95%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="95"></div></div>
+      </div>
+      <div>
+        <div class="bar-label"><span>DTV-C кабел</span><span>72%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="72"></div></div>
+      </div>
+      <div>
+        <div class="bar-label"><span>OTT покритие</span><span>100%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-w="100"></div></div>
+      </div>
+    </div>
+    <ul class="cov-list">
+      <li><span class="dot"></span>Центъра и вътрешни квартали</li>
+      <li><span class="dot"></span>Южни — Лозенец, Студентски</li>
+      <li><span class="dot"></span>Северни — Надежда, Илинден</li>
+      <li><span class="dot"></span>Западни — Люлин, Овча купел</li>
+      <li><span class="dot"></span>Бизнес зони и офис сгради</li>
+    </ul>
+    <button class="btn btn-w btn-lg">Провери адрес →</button>
+  </div>
+</section>
+
+<!-- TVEНИ -->
+<section class="sec" id="tveni" style="background:linear-gradient(135deg,#f7f8fc 0%,#e8eef8 100%)">
+  <div class="sec-inner">
+    <div class="tag">AI Асистент</div>
+    <h2 class="sec-title">Запознайте се с ТВЕНИ</h2>
+    <p class="sec-sub">Нашият интелигентен асистент е на линия 24/7 — без чакане на телефона.</p>
+    <div class="chat">
+      <div class="chat-hd">
+        <div class="chat-av">ТВ</div>
+        <div>
+          <div class="chat-name">ТВЕНИ</div>
+          <div class="chat-status"><span style="color:#4ade80;margin-right:4px">●</span>Онлайн сега</div>
+        </div>
+      </div>
+      <div class="chat-body" id="chat-body">
+        <div class="msg bot">Здравейте! Аз съм ТВЕНИ. С какво мога да помогна?</div>
+        <div class="msg user">Искам да проверя сметката си</div>
+        <div class="msg bot">Въведете абонатния си номер и ще видите пълната история.</div>
+        <div class="msg user">Как надграждам плана си?</div>
+        <div class="msg bot">Онлайн, без хартия — промяната влиза веднага. 🚀</div>
+      </div>
+      <div class="chat-inp">
+        <input class="chat-input" id="chat-input" placeholder="Напишете съобщение..." type="text">
+        <button class="chat-send" id="chat-send">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        </button>
+      </div>
+    </div>
+    <button class="btn btn-p btn-lg" style="width:100%;justify-content:center">Говори с ТВЕНИ →</button>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="tag">Защо ТВ-НЕТ</div>
+    <h2 class="sec-title">Различни по начин,<br>не само по цена</h2>
+    <div class="why" style="margin-top:32px">
+      <div class="why-item"><div class="why-n">01</div><h3>Локален оператор</h3><p>Техниците ни са в София и реагират до 4 часа.</p></div>
+      <div class="why-item"><div class="why-n">02</div><h3>Прозрачни цени</h3><p>Без скрити такси за инсталация или прекратяване.</p></div>
+      <div class="why-item"><div class="why-n">03</div><h3>Собствена мрежа</h3><p>Не препродаваме чужди линии — наша инфраструктура.</p></div>
+      <div class="why-item"><div class="why-n">04</div><h3>Гарантирана скорост</h3><p>Симетричен интернет — еднакво при сваляне и качване.</p></div>
+      <div class="why-item"><div class="why-n">05</div><h3>IPTV без доплащане</h3><p>200+ канала в HD включени. Без допълнителни STB такси.</p></div>
+      <div class="why-item"><div class="why-n">06</div><h3>Онлайн всичко</h3><p>Поръчка, плащане, поддръжка — изцяло дигитално.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-ban">
+  <h2>Готови за бърз интернет?</h2>
+  <p>Активирайте услугата до 48 часа.</p>
+  <button class="btn btn-w btn-lg">Обади ни се сега →</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo" style="color:#fff">
+        <div class="logo-box"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f5820d" stroke-width="2.2"><path d="M2 12l10-10 10 10M4 10v10h6v-6h4v6h6V10"/></svg></div>
+        ТВ<span>НЕТ</span>
+      </div>
+      <p>Лицензиран интернет и ТВ оператор в София. ТВ-НЕТ ООД е на пазара от 2009 г.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Услуги</h4>
+        <ul><li><a href="#">Интернет</a></li><li><a href="#">IPTV</a></li><li><a href="#">OTT</a></li><li><a href="#">Бизнес</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Компания</h4>
+        <ul><li><a href="#">За нас</a></li><li><a href="#">Покритие</a></li><li><a href="#">Новини</a></li><li><a href="#">Кариери</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Поддръжка</h4>
+        <ul><li><a href="#">Клиентски портал</a></li><li><a href="#">Плащане</a></li><li><a href="#">FAQ</a></li><li><a href="#">Контакти</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Правно</h4>
+        <ul><li><a href="#">Поверителност</a></li><li><a href="#">Общи условия</a></li><li><a href="#">Лицензи</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <p>© 2025 ТВ-НЕТ ООД. Всички права запазени.</p>
+      <p><a href="#">Политика за поверителност</a> · <a href="#">Общи условия</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+// PWA Install
+let deferredPrompt;
+const banner = document.getElementById('install-banner');
+const installBtn = document.getElementById('install-btn');
+const dismissBtn = document.getElementById('dismiss-btn');
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  banner.classList.remove('hidden');
+});
+
+installBtn && installBtn.addEventListener('click', () => {
+  banner.classList.add('hidden');
+  deferredPrompt && deferredPrompt.prompt();
+});
+
+dismissBtn && dismissBtn.addEventListener('click', () => {
+  banner.classList.add('hidden');
+});
+
+// Coverage bars animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.bar-fill').forEach((bar, i) => {
+        setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, i * 180);
+      });
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const covBars = document.getElementById('cov-bars');
+if (covBars) observer.observe(covBars);
+
+// Chat
+const chatBody = document.getElementById('chat-body');
+const chatInput = document.getElementById('chat-input');
+const chatSend = document.getElementById('chat-send');
+
+const replies = [
+  'Разбирам! Ще ви свържем с екипа ни.',
+  'Благодаря за въпроса. Можем да организираме посещение на техник.',
+  'Тази услуга е налична в плановете Оптима и Про.',
+  'Проверявам информацията... Моля, опишете проблема по-детайлно.',
+];
+let replyIdx = 0;
+
+function sendMessage() {
+  const txt = chatInput.value.trim();
+  if (!txt) return;
+  const userMsg = document.createElement('div');
+  userMsg.className = 'msg user';
+  userMsg.textContent = txt;
+  chatBody.appendChild(userMsg);
+  chatInput.value = '';
+  chatBody.scrollTop = chatBody.scrollHeight;
+  setTimeout(() => {
+    const botMsg = document.createElement('div');
+    botMsg.className = 'msg bot';
+    botMsg.textContent = replies[replyIdx % replies.length];
+    replyIdx++;
+    chatBody.appendChild(botMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, 800);
+}
+
+chatSend && chatSend.addEventListener('click', sendMessage);
+chatInput && chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+</script>
+</body>
+</html>
